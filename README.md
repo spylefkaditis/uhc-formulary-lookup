@@ -1,3 +1,34 @@
+# UHC Formulary Lookup
+
+Next.js + Supabase project that stores the UnitedHealthcare Medicare Part D Sample Formulary 2025 in a `formulary_drugs` table and offers a terminal lookup by brand or generic name.
+
+## Setup
+
+1. Copy `.env.example` to `.env.local` and fill in your Supabase URL and anon key.
+2. Apply `supabase/migrations/` (SQL Editor or `supabase db push`), then run `supabase/seed.sql` to load the 80 CSV rows.
+
+## Terminal lookup
+
+```bash
+npm run lookup -- <brand or generic name>
+```
+
+Matching is case-insensitive and partial. Example, `npm run lookup -- entresto`:
+
+```
+1 result for "entresto"
+Entresto — sacubitril/valsartan  [UHC-F25-0044]
+  Class:    Cardiovascular - Antihypertensive
+  Form:     tablet, 24-26; 49-51; 97-103 mg
+  Tier:     4
+  PA: Yes   Step therapy: Yes   Qty limit: Yes
+  Step req: Trial of an ACE inhibitor or ARB, such as lisinopril or losartan
+  Qty:      60 tablets per 30 days
+  Source:   UnitedHealthcare Medicare Part D Sample Formulary 2025, p.33 (effective 2025-01-01)
+```
+
+---
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
